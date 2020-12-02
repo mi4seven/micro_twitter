@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_29_175314) do
+ActiveRecord::Schema.define(version: 2020_12_01_213628) do
 
   create_table "tweeets", force: :cascade do |t|
     t.text "tweeet"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,6 +32,8 @@ ActiveRecord::Schema.define(version: 2020_11_29_175314) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", limit: 100
+    t.string "username", limit: 50
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
