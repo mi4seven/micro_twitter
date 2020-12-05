@@ -3,7 +3,7 @@
 	<article class="media box">
 		<figure class="media-left">
 			<p class="image is-64x64">
-				<%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
+				<%= image_tag current_user.user_profile.image.url %>
 			</p>
 		</figure>
 		<div class="media-content">
@@ -12,19 +12,18 @@
 	</article>
   <% end %>
 
-
 <% @tweeets.each do | tweeet | %>
   <div class="box">
   	<article class="media">
   		<div class="media-left">
   			<figure class="image is-64x64">
-  				<%= gravatar_image_tag(tweeet.user.email, size: 64, alt: tweeet.user.name) %>
+				<%= image_tag tweeet.user.user_profile.image.url %>
   			</figure>
   		</div>
   		<div class="media-content">
   			<div class="content">
-  				<strong><%= tweeet.user.name %></strong><br />
-  				<small><%= tweeet.user.username %></small><br/>
+  				<strong><%= tweeet.user.user_profile.name %></strong><br />
+  				<small><%= tweeet.user.user_profile.username %></small><br/>
   				<p><%= tweeet.tweeet %></p>
   			</div>
         <% if user_signed_in? && current_user.id == tweeet.user_id %>

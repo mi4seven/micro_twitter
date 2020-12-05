@@ -49,7 +49,7 @@ class TweeetsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @tweeet.errors, status: :unprocessable_entity }
       end
-    end
+    end  
   end
 
   # DELETE /tweeets/1
