@@ -8,7 +8,7 @@
 				<div class="media-left">
 					<figure class="image is-64x64">
 						<% if Rails.env.production? %>
-							<%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
+							<%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.user_profile.name) %>
 						<% else %>                              
 							<% if (!current_user.user_profile.image.nil?) %>            
 								<%= image_tag current_user.user_profile.image %>  

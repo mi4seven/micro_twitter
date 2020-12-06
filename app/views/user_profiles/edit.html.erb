@@ -10,7 +10,7 @@
           <div class="field">
             <div class="control">             
               <% if Rails.env.production? %>
-                <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
+                <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.user_profile.name) %>
               <% else %>                              
                 <% if (!@user_profile.image.nil?) %>            
                   <%= image_tag @user_profile.image %>  
