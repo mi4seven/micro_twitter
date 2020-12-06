@@ -4,17 +4,20 @@
       <div class="column is-4">
         
       <h2 class="title is-2">Edit Profile</h2>
-      <%= simple_form_for(@user_profile, html: {multipart: true}) do |f| %>
+      <%= simple_form_for(@user_profile) do |f| %>
         <%= f.error_notification %>
 
           <div class="field">
+            <div class="control">             
+              <% if (!current_user.user_profile.image.nil?) %>
+                <%= image_tag @user_profile.image %>	
+              <% end %>	                            
+            </div>
+          </div>
+
+          <div class="field">
             <div class="control">
-
-              <% if @user_profile.image.exists? %>
-                  <%= image_tag @user_profile.image.url %><br/>
-              <% end %>
-
-              <%= f.file_field :image %>
+                <%= f.file_field :image  %>
             </div>
           </div>
 

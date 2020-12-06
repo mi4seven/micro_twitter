@@ -3,11 +3,13 @@
 	<article class="media box">
 		<figure class="media-left">
 			<p class="image is-64x64">
-				<%= image_tag current_user.user_profile.image.url %>
+				<% if current_user.user_profile.image.blank? %>
+					<%= image_tag current_user.user_profile.image %>	
+				<% end %>	
 			</p>
 		</figure>
 		<div class="media-content">
-			 <%= render 'tweeets/form' %>
+			<%= render 'tweeets/form' %>
 		</div>
 	</article>
   <% end %>
@@ -17,7 +19,9 @@
   	<article class="media">
   		<div class="media-left">
   			<figure class="image is-64x64">
-				<%= image_tag tweeet.user.user_profile.image.url %>
+				<% if current_user.user_profile.image.blank? %>
+					<%= image_tag current_user.user_profile.image %>	
+				<% end %>	
   			</figure>
   		</div>
   		<div class="media-content">
@@ -36,7 +40,7 @@
   					  <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
   					<% end %>
   					<%= link_to tweeet, method: :delete, data: { confirm: "Are you sure you want to delete this tweeet?" } do %>
-  							<span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+  						<span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
   					<% end %>
   				</div>
   			</nav>

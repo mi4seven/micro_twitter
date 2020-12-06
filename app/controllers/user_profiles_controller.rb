@@ -2,7 +2,9 @@ class UserProfilesController < ApplicationController
   before_action :set_user_profile, only: [:edit, :update]
 
   def update
+    #@user_profile.image.attach(params[:image])       
     @user_profile.update(user_profile_params)
+ 
     flash.notice = "Your profile has been successfully updated!"
     #render action: "edit"
     redirect_to root_path

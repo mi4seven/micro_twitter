@@ -7,7 +7,9 @@
 			<article class="media">
 				<div class="media-left">
 					<figure class="image is-64x64">
-						<%= image_tag current_user.user_profile.image.url %>
+						<% if (!current_user.user_profile.image.blank?) %>
+							<%= image_tag current_user.user_profile.image %>	
+						<% end %>					
 					</figure>
 				</div>
 				<div class="media-content">
