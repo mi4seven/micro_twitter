@@ -7,13 +7,13 @@
 			<article class="media">
 				<div class="media-left">
 					<figure class="image is-64x64">
-						<% if (!current_user.user_profile.image.blank?) %>
-							<% if Rails.env.production? %>
-								<%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>    
-							<% else %>
-								<%= image_tag current_user.user_profile.image %>  
-							<% end %> 
-						<% end %>				
+						<% if Rails.env.production? %>
+							<%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
+						<% else %>                              
+							<% if (!current_user.user_profile.image.nil?) %>            
+							<%= image_tag @user_profile.image %>  
+							<% end %>                 
+						<% end %>  
 					</figure>
 				</div>
 				<div class="media-content">
