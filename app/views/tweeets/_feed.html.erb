@@ -7,7 +7,7 @@
 					<%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
 				<% else %>                              
 					<% if (!current_user.user_profile.image.nil?) %>            
-					<%= image_tag @user_profile.image %>  
+						<%= image_tag current_user.user_profile.image %>  
 					<% end %>                 
 				<% end %>  
 			</p>
