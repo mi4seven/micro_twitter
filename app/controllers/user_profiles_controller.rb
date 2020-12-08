@@ -10,6 +10,11 @@ class UserProfilesController < ApplicationController
     redirect_to root_path
   end
 
+  # def user_followers
+  #   @user = User.where(id: params[:id]).first
+  #   @followers = @user.get_followers
+  # end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_profile
