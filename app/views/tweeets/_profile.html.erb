@@ -67,7 +67,13 @@
 						<article class="media">					
 							<div class="media-left">
 								<figure class="image is-32x32">
-									<img src="https://bulma.io/images/placeholders/64x64.png">
+									<% if Rails.env.production? %>
+										<%= gravatar_image_tag(follower.follower_user.email, size: 64, alt: follower.follower_user.user_profile.name) %>
+									<% else %>                              
+										<% if (follower.follower_user.user_profile.image.attached?) %>            
+											<%= image_tag follower.follower_user.user_profile.image %>  
+										<% end %>                     
+									<% end %> 
 								</figure>
 							</div>
 						</article>
@@ -75,7 +81,7 @@
 						<strong><%= follower.follower_user.user_profile.name %></strong>	
 																
 						<div class="media-right">						
-							<%= f.button :submit, "Follow", class: "button is-small is-info is-outlined is-rounded", style: "#{'display:none' if follower.is_folloded_by_curr_user == true}" %>
+							<%= f.button :submit, "Follow", class: "button is-small is-info is-outlined is-rounded", style: "#{'display:none' if follower.is_followed_by_me == true}" %>
 						</div>						
 					</div>
 				<% end %>
@@ -93,7 +99,13 @@
 						<article class="media">					
 							<div class="media-left">
 								<figure class="image is-32x32">
-									<img src="https://bulma.io/images/placeholders/64x64.png">
+									<% if Rails.env.production? %>
+										<%= gravatar_image_tag(following.user.email, size: 64, alt: following.user.user_profile.name) %>
+									<% else %>                              
+										<% if (following.user.user_profile.image.attached?) %>            
+											<%= image_tag following.user.user_profile.image %>  
+										<% end %>                     
+									<% end %> 
 								</figure>
 							</div>
 						</article>
