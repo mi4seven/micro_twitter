@@ -22,6 +22,7 @@ class UserProfilesController < ApplicationController
     end
 
     def user_profile_params
+      #TODO: Check!
       #@params.require(:user_profile).permit(:user_profile)
       params[:user_profile][:user_id] = current_user.id
       params.require(:user_profile).permit(:name, :username, :image)

@@ -2,8 +2,8 @@
 	<nav class="panel">
 		<p class="panel-heading">Who to Follow</p>
 
-        <% current_user.who_to_follow.each do | user | %>				
-            
+        <% current_user.who_to_follow(current_user.id).each do | user | %>				
+            <%# <%= simple_form_for(user) do |f| %>             
                 <div class="panel-block is-active">
                     <article class="media">					
                         <div class="media-left">
@@ -21,11 +21,11 @@
 
                     <strong><%= user.user_profile.name %></strong>	
                                                             
-                    <div class="media-right">						
-                        
+                    <div class="media-right">											
+						<%# <%= f.button :submit, "Follow", class: "button is-small is-info is-outlined is-rounded" %>                     
                     </div>						
                 </div>
-         
+            <%# <% end %>                        
         <% end %>
 	</nav>
 </div>
