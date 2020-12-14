@@ -13,8 +13,6 @@ class User < ApplicationRecord
   has_many :followings, foreign_key: 'follower_id', class_name: 'Follower'
 
   def who_to_follow(usr_id)
-    #User.where.not(:id => usr_id).where.not(:id => Follower.where(:follower_id => usr_id).select(:user_id))
-
     User.where.not(:id => usr_id).where.not(:id => Follower.where(:follower_id => usr_id).select(:user_id)).where.not(:id => Follower.where(:user_id => usr_id).select(:follower_id))    
   end
 

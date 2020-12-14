@@ -3,6 +3,7 @@
 		<p class="panel-heading">Profile</p>
 
 		<div class="panel-block">
+
 			<article class="media">
 				<div class="media-left">
 					<figure class="image is-64x64">
@@ -33,18 +34,21 @@
 						<p class="title is-6"><%= current_user.tweeets.count %></p>
 					</div>
 				</div>
+
+				<div class="level-item has-centered-text">
+					<div>
+						<p class="heading">Followers</p>
+						<p class="title is-6"><%= current_user.followings.count %></p>
+					</div>
+				</div>
+
 				<div class="level-item has-centered-text">
 					<div>
 						<p class="heading">Following</p>
 						<p class="title is-6"><%= current_user.followers.count %></p>
 					</div>
 				</div>
-					<div class="level-item has-centered-text">
-					<div>
-						<p class="heading">Followers</p>
-						<p class="title is-6"><%= current_user.followings.count %></p>
-					</div>
-				</div>
+
 			</div>
 		</div>
 
@@ -57,12 +61,13 @@
 		</div>	
 	</nav>
 
-	<nav class="panel">
+	<nav class="panel">		
 		<p class="panel-heading">Your Followers</p>
+
 		<% if (!current_user.followers.nil?) %>	
 			<% current_user.followers.each do | follower | %>				
-				<%= simple_form_for(follower) do |f| %>
-					<div class="panel-block is-active">
+				<%= simple_form_for(follower) do |f| %>				
+					<div class="panel-block is-active">							
 						<article class="media">					
 							<div class="media-left">
 								<figure class="image is-32x32">
@@ -77,11 +82,10 @@
 							</div>
 						</article>
 
-						<strong><%= follower.follower_user.user_profile.name %></strong>	
-																
-						<div class="media-right">						
-							<%= f.button :submit, "Follow", class: "button is-small is-info is-outlined is-rounded", style: "#{'display:none' if follower.is_followed_by_me == true}" %>
-						</div>						
+						<strong><%= follower.follower_user.user_profile.name %></strong>
+						<div class="media-right">																							
+							<%= f.button :submit, "Follow", class: "button is-small is-info is-outlined is-rounded", style: "#{'display:none' if follower.is_followed_by_me == true}" %>		
+						</div>																							
 					</div>
 				<% end %>
 			<% end %>
@@ -107,15 +111,17 @@
 									<% end %> 
 								</figure>
 							</div>
-						</article>
+						</article>		
 
 						<strong><%= following.user.user_profile.name %></strong>
 						<div class="media-right">								
 							<%= button_to "Unfollow", @following, :method => :delete, class: "button is-small is-info is-outlined is-rounded" %>							
-						</div>						
+						</div>										
 					</div>
 				<% end %>			
 			<% end %>
 		<% end %> 
-	</nav>	
+	</nav>
+
+	
 </div>
