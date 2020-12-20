@@ -1,9 +1,44 @@
-<p id="notice"><%= notice %></p>
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
 
-<p>
-  <strong>Tweeet:</strong>
-  <%= @tweeet.tweeet %>
-</p>
+        <article class="media box">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <% if Rails.env.production? %>
+                <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.user_profile.name) %>
+              <% else %>                              
+                <% if (current_user.user_profile.image.attached?) %>            
+                  <%= image_tag current_user.user_profile.image %>
+                <% end %>                 
+              <% end %>  
+            </p>
+          </figure>
+          
+          <div class="media-content">
+            <div class="content">
+              <div class="control">
+              		<strong><%= @tweeet.user.user_profile.name %></strong><br />
+						      <small><%= @tweeet.user.user_profile.username %></small><br/><br/>
 
-<%= link_to 'Edit', edit_tweeet_path(@tweeet) %> |
-<%= link_to 'Back', tweeets_path %>
+                  <h5><%= @tweeet.tweeet %></h5>
+              </div>			
+            </div>
+            
+            <div class="content">
+              <div class="control">            
+                <% if current_user.id == @tweeet.user.id %>
+                  <%= link_to 'Edit', edit_tweeet_path(@tweeet), class: "button is-info" %>             
+                <% end %>
+                <%= link_to 'Back', tweeets_path, class: "button is-info" %>
+              </div>                 
+            </div>                   
+          </div>
+        </article>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
