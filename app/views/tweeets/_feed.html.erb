@@ -24,28 +24,36 @@
 						<strong><%= tweeet.user.user_profile.name %></strong><br />
 						<small><%= tweeet.user.user_profile.username %></small><br/>					
 						<p><%= tweeet.tweeet %></p>
-					</div>
+					
 
 					<% if user_signed_in? %>
-						<nav class="level">
-							<div class="level-left is-mobile">
-								<%= link_to tweeet, class: "level-item" do %>
-									<span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
-								<% end %>
+						<nav class="level is-mobile">
+							<div class="level-left">
+								<a class="level-item">
+									<%= link_to tweeet, class: "level-item" do %>
+										<span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
+									<% end %>
+								</a>
+								<% if current_user.id == tweeet.user.id %>
 
-								<% if current_user.id == tweeet.user.id %>	
+								<a class="level-item">
 
 									<%= link_to edit_tweeet_path(tweeet), class: "level-item" do %>
 										<span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
 									<% end %>
+								</a>
+								<a class="level-item">
 									<%= link_to tweeet, method: :delete, data: { confirm: "Are you sure you want to delete this tweeet?" } do %>
 										<span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
 									<% end %>
-
+								</a>
 								<% end %>
+
 							</div>
 						</nav>			  
 					<% end %>
+
+					</div>
 				</div>
 			</article>
   		</div>

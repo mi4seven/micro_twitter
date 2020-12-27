@@ -1,11 +1,10 @@
 
-  <div class="content">
-    <div class="control">   
-    <%= simple_form_for(@tweeet) do |f| %>
-       <%= f.error_notification %> 
-          <article class="media box">
+  <%= simple_form_for(@tweeet) do |f| %>
+    <%= f.error_notification %> 
+      <div class="box">   
+        <article class="media">
           <figure class="media-left">
-            <p class="image is-64x64">
+            <div class="image is-64x64">
               <% if Rails.env.production? %>
                 <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.user_profile.name) %>
               <% else %>                              
@@ -13,25 +12,44 @@
                   <%= image_tag current_user.user_profile.image %>
                 <% end %>                 
               <% end %>  
-            </p>
+            </div>
+            </br>
+            <div class="control">                      
+              <strong><%= current_user.user_profile.name %></strong><br />
+            </div> 
+              
+            <div class="control">                                  
+              <small><%= current_user.user_profile.username %></small><br/>   
+            </div> 
           </figure>
-          
+
           <div class="media-content">
-            <div class="content">
-                <div class="field">
-                  <div class="control">
-                    <%= f.input :tweeet, label: "Tweeet about it", input_html: { class: "textarea "}, wrapper: false, label_html: {class: "label"}, placeholder: "Compose a new tweeet...", autofocus: true %>
-                  </div>
-                </div>			
-            </div>                            
+            <div class="field">
+              <p class="control">
+                <textarea class="textarea" placeholder="Add a comment..."></textarea>
+              </p>
+            </div>
+          
+            <p class="control">
+              <%= f.button :submit, class: "button is-info" %>
+              <%= link_to 'Cancel', tweeets_path, class: "button is-info" %>  
+            </p>
           </div>
+
         </article>
- 
-        <%= f.button :submit, class: "button is-info" %>
-        <%= link_to 'Cancel', tweeets_path, class: "button is-info" %>
-      <% end %>
-    </div>                 
-  </div>  
+
+      </div>  
+
+  <% end %>
+
+
+
+
+
+
+
+
+               
 
 
 

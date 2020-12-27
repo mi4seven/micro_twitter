@@ -4,8 +4,9 @@
 
         <% current_user.who_to_follow(current_user.id).each do | user | %>				
             <%= simple_form_for(user) do |f| %> 
-                <div class="panel-block is-active">
-                    <article class="media">					
+
+                 <div class="panel-block"> <%#is-active %>                 	
+                    <%# <div class="media">%>
                         <div class="media-left">
                             <figure class="image is-32x32">
                                 <% if Rails.env.production? %>
@@ -17,13 +18,20 @@
                                 <% end %>
                             </figure>
                         </div>
-                    </article>
+                    <%# </div>  %>  
+                    
+                    <div class="media-content">
+                        <div class="content">
+                            <strong><%= user.user_profile.name %></strong>
+                        </div>
+                    </div>
 
-                    <strong><%= user.user_profile.name %></strong>	
-                                                            
-                    <div class="media-right">								
-						<%= f.button :submit, "Follow", class: "button is-small is-info is-outlined is-rounded" %> 
-                    </div>						
+                    <div class="media-right">	
+                        <p class="control">							
+                            <%= f.button :submit, "Follow", class: "button is-small is-info is-outlined is-rounded" %> 
+                        </p>
+                    </div> 
+                                                                    						
                 </div>
             <% end %>  
         <% end %>

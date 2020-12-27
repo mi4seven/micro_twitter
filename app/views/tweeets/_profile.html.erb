@@ -25,35 +25,39 @@
 					</div>
 				</div>
 			</article>
+
 		</div>
+
 		<div class="panel-block">
-			<div class="level is-mobile">
-				<div class="level-item has-centered-text">
-					<div>
-						<p class="heading">Tweeets</p>
-						<p class="title is-6"><%= current_user.tweeets.count %></p>
+			<div class="control">
+				<div class="level is-mobile">
+							
+					<div class="level-item has-text-centered">
+						<div>
+							<p class="heading">Tweeets</p>
+							<p class="title is-6"><%= current_user.tweeets.count %></p>
+						</div>
+					</div>
+
+					<div class="level-item has-text-centered">
+						<div>
+							<p class="heading">Followers</p>
+							<p class="title is-6"><%= current_user.followings.count %></p>
+						</div>
+					</div>
+
+					<div class="level-item has-text-centered">
+						<div>
+							<p class="heading">Following</p>
+							<p class="title is-6"><%= current_user.followers.count %></p>
+						</div>
 					</div>
 				</div>
-
-				<div class="level-item has-centered-text">
-					<div>
-						<p class="heading">Followers</p>
-						<p class="title is-6"><%= current_user.followings.count %></p>
-					</div>
-				</div>
-
-				<div class="level-item has-centered-text">
-					<div>
-						<p class="heading">Following</p>
-						<p class="title is-6"><%= current_user.followers.count %></p>
-					</div>
-				</div>
-
 			</div>
 		</div>
 
 		<div class="panel-block">
-			<div class="level is-mobile">
+			<div class="level">
 				<p class="control">
 				  <%= link_to "Edit Profile", edit_user_profile_path(current_user.user_profile.id), class: "button is-info" %> 
 				</p>
@@ -67,8 +71,8 @@
 		<% if (!current_user.followers.nil?) %>	
 			<% current_user.followers.each do | follower | %>				
 				<%= simple_form_for(follower) do |f| %>				
-					<div class="panel-block is-active">							
-						<article class="media">					
+					<div class="panel-block">							
+						<%# <div class="media"> %>
 							<div class="media-left">
 								<figure class="image is-32x32">
 									<% if Rails.env.production? %>
@@ -78,14 +82,23 @@
 											<%= image_tag follower.follower_user.user_profile.image %>  
 										<% end %>                     
 									<% end %> 
-								</figure>
-							</div>
-						</article>
+								</figure>							
+							</div>							
+						<%# </div>						 %>
 
-						<strong><%= follower.follower_user.user_profile.name %></strong>
-						<div class="media-right">																							
-							<%= f.button :submit, "Follow", class: "button is-small is-info is-outlined is-rounded", style: "#{'display:none' if follower.is_followed_by_me == true}" %>		
-						</div>																							
+							<div class="media-content">
+								<div class="content">
+										<strong><%= follower.follower_user.user_profile.name %></strong>
+							
+								</div>
+							</div>								
+						
+							<div class="media-right">
+								<p class="control">																							
+									<%= f.button :submit, "Follow", class: "button is-small is-info is-outlined is-rounded", style: "#{'display:none' if follower.is_followed_by_me == true}" %>		
+								</p>
+							</div>	
+
 					</div>
 				<% end %>
 			<% end %>
@@ -98,8 +111,8 @@
 		<% if (!current_user.followings.nil?) %>
 			<% current_user.followings.each do | following | %>	
 				<%= simple_form_for(following) do |f| %>				
-					<div class="panel-block is-active">
-						<article class="media">					
+					<div class="panel-block">
+						<%# <div class="media">					 %>
 							<div class="media-left">
 								<figure class="image is-32x32">
 									<% if Rails.env.production? %>
@@ -111,12 +124,18 @@
 									<% end %> 
 								</figure>
 							</div>
-						</article>		
-
-						<strong><%= following.user.user_profile.name %></strong>
+						<%# </div>							 %>
+								
+						<div class="media-content">
+							<div class="content">
+								<strong><%= following.user.user_profile.name %></strong>
+							</div>
+						</div>
+						
 						<div class="media-right">								
 							<%= button_to "Unfollow", @following, :method => :delete, class: "button is-small is-info is-outlined is-rounded" %>							
-						</div>										
+						</div>
+										
 					</div>
 				<% end %>			
 			<% end %>
